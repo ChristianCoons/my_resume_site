@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ project.title }} - Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --metallic-blue: linear-gradient(145deg, #2c5364, #203a43);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #1c1c1c;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        .header {
+            padding: 2rem;
+            background: var(--metallic-blue);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .project-title {
+            font-size: 2.5rem;
+            margin: 0;
+            background: linear-gradient(to right, #ffffff, #a8c0ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .project-image {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .project-description {
+            font-size: 1.1rem;
+            color: #e0e0e0;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: var(--metallic-blue);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-top: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <h1 class="project-title">{{ project.title }}</h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <img src="{{ project.image }}" alt="{{ project.title }}" class="project-image">
+        <div class="project-description">
+            {{ project.description }}
+        </div>
+        <a href="{{ url_for('home') }}" class="back-button">← Back to Portfolio</a>
+    </div>
+</body>
+</html>

@@ -1,21 +1,118 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Resume</title>
+    <title>Professional Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
+        :root {
+            --metallic-blue: linear-gradient(145deg, #2c5364, #203a43);
+            --card-hover: linear-gradient(145deg, #336b82, #284956);
         }
-        h1 {
-            color: #333;
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #1c1c1c;
+            color: #ffffff;
+        }
+
+        .header {
+            padding: 2rem;
+            text-align: center;
+            background: var(--metallic-blue);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #ffffff, #a8c0ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .subtitle {
+            color: #a8c0ff;
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            position: relative;
+            aspect-ratio: 1;
+            background: var(--metallic-blue);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            background: var(--card-hover);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+        }
+
+        .project-title {
+            margin: 0;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                padding: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Your Name Here</h1>
-    <p>Welcome to my resume website!</p>
+    <header class="header">
+        <h1>Your Name</h1>
+        <div class="subtitle">Full Stack Developer & Designer</div>
+    </header>
+
+    <div class="grid-container">
+        {% for project_id, project in projects.items() %}
+        <a href="{{ url_for('project', project_id=project_id) }}" class="project-card">
+            <img src="{{ project.image }}" alt="{{ project.title }}" class="project-image">
+            <div class="project-info">
+                <h3 class="project-title">{{ project.title }}</h3>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
 </body>
 </html>

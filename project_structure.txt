@@ -1,0 +1,15 @@
+my_resume_site
+```
+your_project/
+├── flask_app.py
+├── requirements.txt
+├── .gitignore
+├── static/
+│   └── images/
+│       ├── project1.jpg
+│       ├── project2.jpg
+│       └── ...
+└── templates/
+    ├── home.html
+    └── project.html
+```
